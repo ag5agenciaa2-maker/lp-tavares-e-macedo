@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: http://www.tavaresemacedo.ag5agencia.site/sitemap.xml

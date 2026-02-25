@@ -38,6 +38,13 @@
   <link rel="apple-touch-icon"
     href="Imagens%20-%20Tavares%20e%20Macedo/logo-tavares-e-macedo-advocacia-escritorio-juridico-rio-de-janeiro-192.webp">
 
+  <!-- Preload LCP Image para otimizar Performance -->
+  <link rel="preload" as="image"
+    href="Imagens%20-%20Tavares%20e%20Macedo/advocacia-criminal_-o-que-e-e-como-trabalhar-nessa-area_.jpg">
+
+  <!-- SEO Fix: Canonical Link -->
+  <link rel="canonical" href="http://www.tavaresemacedo.ag5agencia.site">
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -458,8 +465,10 @@
         <div class="sobre-grid">
           <div class="sobre-image reveal">
             <div class="image-wrapper">
+              <!-- Lighthouse/PageSpeed fix: added width/height to image to avoid CLS -->
               <img data-src="Imagens%20-%20Tavares%20e%20Macedo/advocacia.jpg"
-                alt="Escritório de Advocacia Tavares & Macedo - Equipe em atendimento" class="lazy-img" loading="lazy">
+                alt="Escritório de Advocacia Tavares & Macedo - Equipe em atendimento" class="lazy-img" loading="lazy"
+                width="800" height="400">
               <div class="image-decoration"></div>
             </div>
           </div>
@@ -1125,7 +1134,7 @@
   </a>
 
   <!-- Scripts -->
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 
   <!-- ============================================================
        COOKIE BANNER UNIVERSAL — Snippet HTML Completo
