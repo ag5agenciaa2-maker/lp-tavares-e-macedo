@@ -459,7 +459,7 @@ address {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('Imagens%20-%20Tavares%20e%20Macedo/advocacia-criminal_-o-que-e-e-como-trabalhar-nessa-area_.jpg');
+  background-image: url('Imagens%20-%20Tavares%20e%20Macedo/advocacia_11zon.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -686,7 +686,7 @@ address {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-accent);
+  color: var(--color-primary-dark);
   margin-bottom: 1rem;
 }
 
@@ -1421,7 +1421,7 @@ address {
 
 .footer-tagline {
   font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
   margin-top: 12px;
   margin-bottom: 12px;
@@ -1478,7 +1478,7 @@ address {
 .footer-links li,
 .footer-link {
   font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.9);
   transition: all var(--transition-fast);
 }
 
@@ -1495,7 +1495,7 @@ address {
 
 .footer-address {
   font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.7;
 }
 
@@ -1544,7 +1544,7 @@ address {
 
 .footer-copyright {
   font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 0.25rem;
 }
 

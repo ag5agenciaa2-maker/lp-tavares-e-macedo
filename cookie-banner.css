@@ -28,8 +28,8 @@
     /* RGB correspondente ao #D9B76A */
 
     /* ── Texto ── */
-    --ck-text-primary: rgba(255, 255, 255, 0.95);
-    --ck-text-muted: rgba(255, 255, 255, 0.8);
+    --ck-text-primary: rgba(255, 255, 255, 1);
+    --ck-text-muted: rgba(255, 255, 255, 0.9);
     /* Aumentado de 0.42 para 0.8 para visibilidade no escuro */
     --ck-text-link: var(--ck-accent);
 
@@ -162,8 +162,8 @@
 /* Primário — Accent */
 .ck-btn--primary {
     background: var(--ck-accent);
-    color: #fff;
-    font-weight: 600;
+    color: #111111;
+    font-weight: 700;
 }
 
 .ck-btn--primary:hover {
@@ -178,8 +178,8 @@
 /* Outline — Borda sutil */
 .ck-btn--outline {
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: rgba(255, 255, 255, 0.38);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .ck-btn--outline:hover {
@@ -190,7 +190,7 @@
 /* Ghost — Link underline */
 .ck-btn--ghost {
     background: transparent;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.85);
     border: none;
     padding: 0.38rem 0.4rem;
     text-decoration: underline;
