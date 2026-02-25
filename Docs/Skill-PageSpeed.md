@@ -159,8 +159,9 @@ A skill pode receber:
 ### 3. CSS – otimizações internas
 
 - Remover CSS evidentemente não usado (classes que nunca aparecem em nenhum HTML), quando estiver claro e seguro.  
+- **Estratégia Anti-Bloqueio (Render-Blocking):**
+  - Identifique e aplique a tag `<link rel="preload" as="style" ...>` antes da chamada oficial da folha de estilos CSS. Depois use o truque `<link rel="stylesheet" ... media="print" onload="this.media='all'">` para carregar de forma assíncrona, eliminando gargalos de FCP.
 - Agrupar regras duplicadas e simplificar seletores muito complexos, sem mexer em resultados visuais.  
-- Evitar `@import` no CSS que adiam carregamento; sugerir converter para `<link>` no `<head>` se for coerente.[web:8][web:16]  
 - Identificar animações pesadas e transições infinitas que afetam TBT/INP; sugerir ajustes com autorização do usuário se o efeito visual for alterado.
 
 ### 4. Scripts (JS) e recursos
@@ -187,7 +188,11 @@ A skill pode receber:
 - Links:
   - Melhorar textos de links (`link-text`) para serem descritivos; se isso mudar o texto visível, explicar o ganho e pedir permissão.[file:47]  
 - Foco/teclado:
-  - Garantir que não haja remoção de outline sem substituto; se ver padrão problemático, recomendar correção.
+  - Garantir que não haja remoção de outline sem substituto.
+- **Áreas de Toque Tátil (Touch Targets):** 
+  - Sempre verifique alinhamentos de Links e Botões mobile. Garanta aplicação de `display: inline-block; padding: 8px 0` ou superior para evitar a métrica negativa de "tap targets too small".
+- **Distinção de Links (Aria-Labels):**
+  - Links com o mesmo propósito/ancora ou múltiplos textos de números de telefone próximos DEVEM possuir atritutos tipo `aria-label="Função (XX) XXXXX"` exclusivos para não quebrar a varredura do software leitor de tela para deficientes visuais.
 
 ### 6. SEO
 
