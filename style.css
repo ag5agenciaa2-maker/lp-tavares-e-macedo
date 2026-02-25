@@ -163,6 +163,7 @@ address {
 
 .section {
   padding: var(--section-padding) 0;
+  scroll-margin-top: var(--header-height);
 }
 
 .section-alt {

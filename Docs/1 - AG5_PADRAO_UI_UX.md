@@ -46,7 +46,7 @@ A captação de leads via WhatsApp precisa ter rastreabilidade intuitiva:
 
 - **Botão Flutuante (Obrigatório):**
   - Um ícone fixo e nítido no canto inferior direito.
-  - Deve conter um **Badge de Notificação** (uma bolinha no canto com o número "1") com a cor primária ou alerta puxando a paleta original, não use vermelho em tom puro.
+  - Deve conter um **Badge de Notificação com uma leve e sutil animação ** (uma bolinha no canto com o número "1") com a **cor vermelha pura** (ex: `#ff3b30` ou vermelho vibrante) para simular uma notificação real de mensagem não lida e atrair o clique na versão mobile e web. Não use cores genéricas para o aviso.
   - O link `<a href="wa.me/...>` deve ter `role="button"` e `aria-label="Falar pelo WhatsApp"` para o crivo de acessibilidade.
   - **Animação Sutil:** Inclua uma animação que simule respiração/pulsação (`pulse` rápido via `@keyframes shadow` no botão principal).
 
