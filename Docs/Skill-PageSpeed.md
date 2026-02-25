@@ -143,18 +143,21 @@ A skill pode receber:
 
 - `<head>`:
   - `title`: garantir que exista, descritivo (ajuda em `document-title` e SEO).[file:47]  
-  - `meta name="description"`: adicionar ou corrigir com texto relevante, sem afetar layout.[file:47]  
+  - `meta name="description"`: adicionar ou corrigir com texto relevante, sem afetar layout.  
   - `meta charset`, `viewport` apropriada (mobile).  
-  - `link rel="canonical"` se necessário.  
+  - `link rel="canonical"`: obrigatório adicionar em **todas as páginas** para evitar punição de conteúdo duplicado.  
   - `hreflang` quando multi-idioma/região.  
+  - **LCP Image Preload:** Sempre identifique a imagem principal da tela inicial (Hero image/banner) e insira `<link rel="preload" as="image" href="...">` no `<head>` para turbinar a métrica LCP.  
 
 - `<html>`:
   - Atributo `lang` (ex.: `lang="pt-BR"`).  
 
 - `<body>`:
-  - Adicionar `alt` em imagens informativas; `alt=""` para decorativas.[file:47]  
-  - Não tocar em estruturas que tenham CSS acoplado ao nome da tag, a menos que seja seguro; caso contrário, sugerir alteração.  
+  - Adicionar `alt` em imagens informativas; `alt=""` para decorativas.  
+  - Identificar tags pesadas em extensões primitivas (`.jpg` / `.png`) e atualizá-las no código para carregar as contrapartes `.webp` correspondentes, se existirem na pasta.
   - Ajustar HTML para ser rastreável (`is-crawlable`): evitar bloquear conteúdo principal com JS quando não for necessário.
+  - **Heading Order (Hierarquia de Títulos):** Garantir estrutura descendente sequencial exata (`H1` -> `H2` -> `H3`). O Lighthouse retira pontos severos se pular diretamente de um H2 para um H4.
+  - **I-Frames:** Garantir que todo e qualquer `<iframe ...>` (mapas, vídeos) contenha um atributo `title="Descricao do iframe"` explícito, caso contrário irá falhar na averiguação de deficientes visuais.
 
 ### 3. CSS – otimizações internas
 
@@ -178,8 +181,8 @@ A skill pode receber:
   - Se um componente JS grande estiver presente apenas para um efeito não essencial, sugerir remoção ou substituição; se isso mudar visual, seguir protocolo de aprovação.
 
 - Imagens:
-  - No HTML, garantir `width`/`height` (ou `aspect-ratio`) para evitar CLS.[file:47]  
-  - Na saída, recomendar compressão/formatos mais eficientes (WebP/AVIF) como checklist, não modificar binário.
+  - No HTML, garantir `width`/`height` absolutos (ou `aspect-ratio`) para **todas** as imagens para reservar espaço na tela e zerar a métrica de *Cumulative Layout Shift* (CLS).  
+  - Na saída, recomendar ou aplicar conversão de formatos mais eficientes (WebP/AVIF).
 
 ### 5. Acessibilidade
 
@@ -193,6 +196,8 @@ A skill pode receber:
   - Sempre verifique alinhamentos de Links e Botões mobile. Garanta aplicação de `display: inline-block; padding: 8px 0` ou superior para evitar a métrica negativa de "tap targets too small".
 - **Distinção de Links (Aria-Labels):**
   - Links com o mesmo propósito/ancora ou múltiplos textos de números de telefone próximos DEVEM possuir atritutos tipo `aria-label="Função (XX) XXXXX"` exclusivos para não quebrar a varredura do software leitor de tela para deficientes visuais.
+- **Taxa de Contraste (WCAG 4.5:1):**
+  - Evite usar opacidades brandas (ex: `opacity: 0.5` ou `0.8`) em blocos de parágrafos normais, ou texto branco em botões com fundo de cores pasteis (baixo contraste). Suba opacidades para `>=0.9` e garanta cores de alto contrate/sólidas nas fontes.
 
 ### 6. SEO
 
