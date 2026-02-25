@@ -11,16 +11,25 @@
     <link rel="icon" type="image/x-icon"
         href="Imagens%20-%20Tavares%20e%20Macedo/icon-tavares-e-macedo-advocacia-escritorio-juridico-rio-de-janeiro-favicon.ico">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap">
+    </noscript>
 
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="cookie-banner.css">
+    <link rel="preload" as="style" href="cookie-banner.css">
+    <link rel="stylesheet" href="cookie-banner.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet" href="cookie-banner.css">
+    </noscript>
 
     <style>
         .legal-content {
@@ -219,7 +228,7 @@
 
                 <!-- Coluna 2: Links Rápidos -->
                 <div class="footer-col">
-                    <h4 class="footer-title">Links Rápidos</h4>
+                    <h3 class="footer-title">Links Rápidos</h3>
                     <nav aria-label="Links do rodapé">
                         <ul class="footer-links">
                             <li><a href="index.html#inicio" class="footer-link">Início</a></li>
@@ -234,7 +243,7 @@
 
                 <!-- Coluna 3: Contato -->
                 <div class="footer-col">
-                    <h4 class="footer-title">Contato</h4>
+                    <h3 class="footer-title">Contato</h3>
                     <address class="footer-address">
                         <p class="footer-contact-item">
                             <svg class="footer-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -251,10 +260,13 @@
                                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                                 </path>
                             </svg>
-                            <span>
-                                <a href="tel:+552132814724">(21) 3281-4724</a><br>
-                                <a href="tel:+5521964379567">(21) 96437-9567</a><br>
-                                <a href="tel:+5521992220724">(21) 99222-0724</a>
+                            <span class="footer-phones">
+                                <a href="tel:+552132814724" aria-label="Ligar para telefone fixo (21) 3281-4724">(21)
+                                    3281-4724</a><br>
+                                <a href="tel:+5521964379567" aria-label="Ligar para WhatsApp (21) 96437-9567">(21)
+                                    96437-9567</a><br>
+                                <a href="tel:+5521992220724"
+                                    aria-label="Ligar para celular secundário (21) 99222-0724">(21) 99222-0724</a>
                             </span>
                         </p>
                         <p class="footer-contact-item">
@@ -281,7 +293,7 @@
 
                 <!-- Coluna 4: Regiões Atendidas -->
                 <div class="footer-col">
-                    <h4 class="footer-title">Regiões Atendidas</h4>
+                    <h3 class="footer-title">Regiões Atendidas</h3>
                     <ul class="footer-links">
                         <li>Santa Cruz</li>
                         <li>Sepetiba</li>
