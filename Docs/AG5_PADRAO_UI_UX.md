@@ -16,8 +16,13 @@ O Rodapé (`<footer>`) deve ser reconstruído aplicando o seguinte padrão:
   - No Desktop, siga obrigatoriamente a proporção de grid `1.5fr 1fr 1.5fr 1fr`, divididas assim:
   - **Coluna 1 (Marca):** Logo com aprox. `70px` a `80px` de altura, uma tagline pequena (descrição) e redes sociais em SVG (circular com hover na cor de destaque).
   - **Coluna 2 (Links Rápidos):** Navegação baseada em âncoras.
-  - **Coluna 3 (Contato):** Organização restrita nesta ordem: 1) Nome da Empresa; 2) Endereço Completo; 3) Telefone Fixo; 4) WhatsApp/Celular. Acompanhados de ícones SVG de 18px.
-  - **Coluna 4 (Localização):** Mapa (iframe do Google Maps com `border-radius: 8px`, `height: 100px`), locais atendidos e horário de funcionamento em fontes pequenas (`10px` a `12px`, opacidade 80%).
+  - **Coluna 3 (Contato):** Organização restrita nesta ordem: 1) Nome da Empresa; 2) Endereço Completo; 3) Telefones e WhatsApp. 
+    - **Regra UI/UX e PageSpeed:** Múltiplos telefones devem fluir na mesma linha, separados por `|`. Cada link (`<a href="tel:...">`) DEVE obrigatoriamente ter `padding` mínimo (ex: `8px 0`) e `display: inline-block` para garantir a Área de Toque Tátil mobile, além de `aria-label` descritivo separando quem é Fixo e quem é Celular.
+  - **Coluna 4 (Localização):** Mapa (iframe do Google Maps com `border-radius: 8px`, `height: 100px`, **e atributo `title="Mapa de Localização"`** obrigatório para leitores de tela), locais atendidos e horário de funcionamento em fontes pequenas (`10px` a `12px`, opacidade 80%).
+
+- **Semântica e Acessibilidade (Estrutural):**
+  - Os títulos das colunas (`.footer-title`) **NUNCA** devem quebrar a hierarquia descendente do PageSpeed. Se o site finalizou a última seção em `<h2>`, os títulos do rodapé devem ser mandatoriamente `<h3>`. (Jamais pule para `<h4>`).
+  - Redes Sociais e Botões vazios (apenas SVG) *PRECISAM* da tag `aria-label="Ir para [Rede Social]"` ou perderão 10 pontos de Acessibilidade.
 
 - **Espaçamento e Tipografia:**
   - Reduza severamente os paddings verticais (ex: `padding-top: 30px; padding-bottom: 24px`).
@@ -42,6 +47,7 @@ A captação de leads via WhatsApp precisa ter rastreabilidade intuitiva:
 - **Botão Flutuante (Obrigatório):**
   - Um ícone fixo e nítido no canto inferior direito.
   - Deve conter um **Badge de Notificação** (uma bolinha no canto com o número "1") com a cor primária ou alerta puxando a paleta original, não use vermelho em tom puro.
+  - O link `<a href="wa.me/...>` deve ter `role="button"` e `aria-label="Falar pelo WhatsApp"` para o crivo de acessibilidade.
   - **Animação Sutil:** Inclua uma animação que simule respiração/pulsação (`pulse` rápido via `@keyframes shadow` no botão principal).
 
 ---
@@ -84,7 +90,10 @@ Os formulários de contato não podem parecer modelos defasados.
   - **Compartilhamento (OG Tags):** A tag `<meta property="og:image">` jamais pode faltar ou ser genérica. O Agente deve buscar nas pastas de `Imagens/Assets` do projeto e usar uma imagem "Premium" (ex: Imagem completa da Hero, foto profissional da Clínica/Escritório, ou foto de alta qualidade do Proprietário/Doutor/Mecânico). Essa imagem servirá como o outdoor digital do site no WhatsApp.
   - **Copy Persuasiva:** Os metadados de compartilhamento (ex: `og:title` e `og:description`) devem ser não apenas informativos, mas extramente persuasivos para gerar taxa de clique (CTR) nas redes sociais.
   - **Favicon Dinâmico e Eficiente:** Para o `<link rel="icon">`, o Agente deve vasculhar os arquivos em busca da melhor variação da marca (`logo.svg`, `icon.png`, `symbol.webp`). Dê prioridade a formatos limpos e eficientes que escalonam de forma impecável na aba do navegador.
-- **Ajustes Pró-Responsividade:** Nunca esvazie margens de seções e tente que se comportem como paredes contíguas fixas (`margin: 100px`). Acolha sempre o conceito de espaçamento de preenchimento fluido `clamp()`. As áreas clicáveis no mobile têm que ter largura de "dedo gordo" (44px) minimamente.
+  - **Desbloqueio de Renderização (CSS/Fontes):** Sempre implemente a rotina de pré-carregamento assíncrono avançado para fontes e CSS pesados. Ex: `<link rel="preload" as="style" href="...">` seguido de `<link rel="stylesheet" href="..." media="print" onload="this.media='all'">` para economizar milissegundos no FCP e evitar "Render-Blocking".
+  - **Turbinando o LCP (Maior Pintura de Conteúdo):** Localize a imagem Hero/Banner inicial do site e injete no cabeçalho um `<link rel="preload" as="image" href="...">` para invocar o download crítico de forma imediata.
+  - **Tamanho Físico Fixo (Anti-CLS):** Toda tag `<img>` no projeto precisa conter instintivamente os atributos `width=""` e `height=""` limitando o aspecto visual para as métricas do navegador não causarem "Cumulative Layout Shift" durante o load.
+- **Ajustes Pró-Responsividade e Acessibilidade:** Nunca esvazie margens de seções e tente que se comportem como paredes contíguas fixas (`margin: 100px`). Acolha sempre o conceito de espaçamento de preenchimento fluido `clamp()`. As áreas clicáveis no mobile têm que ter largura de "dedo gordo" (44px) minimamente. Use `padding` (ex: `8px 0`) e `display: inline-block` em links agrupados para eliminar infrações de espaçamento tátil.
 
 ---
 
@@ -94,5 +103,6 @@ O Agente que aplicar este padrão **MUST** (deve estritamente) seguir estas cond
 
 - **Invisible Design (Não quebre a estrutura):** Você é um especialista em polimento e refinamento minimalista. A regra de ouro é: **Nunca altere a estrutura HTML** (grids vitais e flexbox containers principais) a menos que ela esteja severamente quebrada prejudicando o layout. Entenda analiticamente se um "espaço branco" é um respiro intencional proposital da seção original ou um bug visual antes de cortá-lo.
 - **Protocolo de Diagnóstico Prévio (`UI_IMPROVEMENTS.md`):** Antes de aplicar qualquer mudança invasiva no código, você deve obrigatoriamente criar um laudo. Gere um relatório nomeado `UI_IMPROVEMENTS.md` na raiz ou pasta `/Docs` listando tudo o que encontrou no projeto cru, utilizando as tags classificatórias: `[CRÍTICO]`, `[SUGESTÃO]` e `[OK]`.
+- **Hierarquia Inquebrável de Títulos (Headings):** Jamais inicie uma sub-seção pulando níveis lógicos. Pular de um `<h2>` para `<h4>` vai desalinhar o esqueleto do site no Leitor do Google e penalizar no eixo de Acessibilidade Cega e SEO Estrutural. Desça degrau a degrau visual mudando a classe, não a tag.
 - **Restrição de Animações (Mobile/CLS):** No mobile, rastreie qualquer componente que possa gerar _Layout Shift_ (CLS) ou animação pesada/travada (como paralaxe forçado ou fade-ins complexos). Em telas menores (`@media max-width: 768px`), simplifique, bloqueie ou remova animações pesadas de entrada. A experiência touch tem que ser rápida e fluida, não engasgada.
 - **Protocolo Fallback de Favicon Inteligente:** Se o projeto original não tiver uma Logo física/isolada razoável para criar a tag obrigatória do `<link rel="icon">`, **não a deixe vazia ou quebrada (404)**. Imediatamente crie um favicon SVG inline genérico no código (como uma balança se for pra advocacia, um dente para odontologia, etc.) para funcionar como *Fallback (temporário)* até a aprovação visual final. Comunique essa criação no relatório diagnóstico.
