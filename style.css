@@ -464,21 +464,21 @@ address {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0.2;
-  /* Deixa a imagem bem transparente */
+  opacity: 0.45;
+  /* Deixa a Deusa da Justiça mais visível no fundo */
 }
 
 .hero-bg::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(43, 7, 19, 0.8) 0%, rgba(17, 17, 17, 0.9) 100%);
+  background: linear-gradient(to bottom, rgba(43, 7, 19, 0.55) 0%, rgba(17, 17, 17, 0.7) 100%);
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .hero-shape {
@@ -796,6 +796,56 @@ address {
   height: 400px;
   object-fit: cover;
   border-radius: var(--radius-xl);
+}
+
+/* Crossfade entre as duas fotos da advogada na seção Sobre */
+.image-wrapper-fade {
+  position: relative;
+  height: 520px;
+}
+
+.image-wrapper-fade .fade-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  border-radius: var(--radius-xl);
+}
+
+/* Foto 1 fica fixa por baixo (visível ao carregar). Foto 2 por cima faz fade in/out. */
+.image-wrapper-fade .fade-img-1 {
+  z-index: 1;
+}
+
+.image-wrapper-fade .fade-img-2 {
+  z-index: 2;
+}
+
+.image-wrapper-fade .fade-img-2.loaded {
+  animation: sobreCrossfade 14s ease-in-out infinite;
+}
+
+@keyframes sobreCrossfade {
+  0%, 8% { opacity: 0; }
+  42%, 50% { opacity: 1; }
+  92%, 100% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .image-wrapper-fade {
+    height: 440px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-wrapper-fade .fade-img.loaded {
+    animation: none;
+  }
+  .image-wrapper-fade .fade-img-2 {
+    opacity: 0;
+  }
 }
 
 .image-decoration {
